@@ -91,11 +91,8 @@ $(document).ready(function() {
         $("#train-detail").html("");
         
         // Create Firbase event to update page in real-time when value change
-        database.ref("/train").on("child_added", function(snapshot){
+        trainData.on("child_added", function(snapshot){
     
-            console.log(snapshot.val());
-
-
             var newRow;
 
             var trainName = snapshot.val().trainName;
@@ -123,21 +120,25 @@ $(document).ready(function() {
 
             $("#train-detail").append(newRow);
 
-        });
-
         //Calculate time remain and time to next train again
-        var timeConverterInst = moment(firstTrainTime, "HH:mm").subtract(1, "days");
+        // var timeConverterInst = moment(firstTrainTime, "HH:mm").subtract(1, "days");
 
-        var minuteDiffInst = moment().diff(timeConverterInst, "minutes");
+        // var minuteDiffInst = moment().diff(timeConverterInst, "minutes");
 
-        var timeRemainderInst = minuteDiffInst % frequncy;
+        // var timeRemainderInst = minuteDiffInst % frequncy;
 
-        var timeToNextTrainInst = frequncy - timeRemainderInst;
+        // var timeToNextTrainInst = frequncy - timeRemainderInst;
 
-        trainData.push({
-            nextTrainTime: timeToNextTrainInst,
-            trainArrvingIn: timeRemainderInst
-        })
+        // trainData.set({
+        //     trainName: trainNameInput,
+        //     destination: destinationInput,
+        //     firstTrainTime: firstTrainTimeInput,
+        //     frequncy: frequncyInput,
+        //     nextTrainTime: timeToNextTrainInst,
+        //     trainArrvingIn: timeRemainderInst
+        // })
+
+        });
     }
 
     //Show current time
